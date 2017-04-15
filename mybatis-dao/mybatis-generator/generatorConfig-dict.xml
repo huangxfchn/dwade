@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 数据库访问的驱动包，这里最好指定绝对路径，因为它是在classpath中寻找这个jar包，但是我们当前的这个目录没有添加到classpath中 -->
+	<classPathEntry location="F:/JavaWorkspace/mybatis-dao/mybatis-generator/ojdbc-6.jar" />
+
+	<context id="OracleTables" targetRuntime="MyBatis3">
+		<property name="javaFileEncoding" value="utf-8" />
+		<property name="mergeable" value="true" />
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		
+		<commentGenerator type="net.dwade.dao.CommentGenerator">
+			<!-- 是否打开时间注释 -->
+			<property name="suppressDate" value="false" />
+			<!-- 是否去除已经自动生成的注释 -->
+			<property name="suppressAllComments" value="false" />
+			<property name="addRemarkComments" value="true"/>
+			<property name="author" value="huangxf"/>
+		</commentGenerator>
+		
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@localhost:1521:org11" 
+			userId="xxx" 
+			password="xxx">
+			<!-- 针对oracle数据库，需要设置remarksReporting为true，才可以获取注释 -->
+            <property name="remarksReporting" value="true" />
+		</jdbcConnection>
+
+		<!--javaType解析器 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<!-- 生成模型的包名和位置，targetProject可以指定绝对路径，比如生成到common模块中 -->
+		<javaModelGenerator targetPackage="net.dwade.domain.dict"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="net.dwade.dao.dict.mapper"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- 生成DAO接口的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="net.dwade.dao.dict"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<table tableName="TS_PC_DICTIONARY" mapperName="DictionaryDao" domainObjectName="Dictionary" enableCountByExample="false"
+        enableUpdateByExample="false"  enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="constructorBased" value="false" />
+        </table>
+        
+        <table tableName="TS_PC_OPT_LOG_FIELD_MAPPING" mapperName="OptLogFieldMappingDao" domainObjectName="OptLogFieldMapping" enableCountByExample="false"
+        enableUpdateByExample="false"  enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="constructorBased" value="false" />
+        </table>
+		
+	</context>
+</generatorConfiguration>

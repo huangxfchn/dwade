@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dwade.dao.log.ThirdInvokeLogDao">
+  <resultMap id="BaseResultMap" type="net.dwade.domain.log.ThirdInvokeLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TRACE_ID" jdbcType="VARCHAR" property="traceId" />
+    <result column="TIME" jdbcType="TIMESTAMP" property="time" />
+    <result column="RESOURCE_SYS_NAME" jdbcType="VARCHAR" property="resourceSysName" />
+    <result column="RESOURCE_NAME" jdbcType="VARCHAR" property="resourceName" />
+    <result column="RESOURCE_TYPE" jdbcType="VARCHAR" property="resourceType" />
+    <result column="RESOURCE_URL" jdbcType="VARCHAR" property="resourceUrl" />
+    <result column="ACTION" jdbcType="VARCHAR" property="action" />
+    <result column="RETURN_CODE" jdbcType="VARCHAR" property="returnCode" />
+    <result column="RETURN_MSG" jdbcType="VARCHAR" property="returnMsg" />
+    <result column="IN_PARAM" jdbcType="VARCHAR" property="inParam" />
+    <result column="OUT_PARAM" jdbcType="VARCHAR" property="outParam" />
+    <result column="APP_IP" jdbcType="VARCHAR" property="appIp" />
+    <result column="RESPONSE_TIME" jdbcType="VARCHAR" property="responseTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TRACE_ID, TIME, RESOURCE_SYS_NAME, RESOURCE_NAME, RESOURCE_TYPE, RESOURCE_URL, 
+    ACTION, RETURN_CODE, RETURN_MSG, IN_PARAM, OUT_PARAM, APP_IP, RESPONSE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TW_PC_THIRD_INVOKE_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TW_PC_THIRD_INVOKE_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="net.dwade.domain.log.ThirdInvokeLog">
+    insert into TW_PC_THIRD_INVOKE_LOG (ID, TRACE_ID, TIME, 
+      RESOURCE_SYS_NAME, RESOURCE_NAME, RESOURCE_TYPE, 
+      RESOURCE_URL, ACTION, RETURN_CODE, 
+      RETURN_MSG, IN_PARAM, OUT_PARAM, 
+      APP_IP, RESPONSE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{traceId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{resourceSysName,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{resourceType,jdbcType=VARCHAR}, 
+      #{resourceUrl,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, #{returnCode,jdbcType=VARCHAR}, 
+      #{returnMsg,jdbcType=VARCHAR}, #{inParam,jdbcType=VARCHAR}, #{outParam,jdbcType=VARCHAR}, 
+      #{appIp,jdbcType=VARCHAR}, #{responseTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.dwade.domain.log.ThirdInvokeLog">
+    insert into TW_PC_THIRD_INVOKE_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="traceId != null">
+        TRACE_ID,
+      </if>
+      <if test="time != null">
+        TIME,
+      </if>
+      <if test="resourceSysName != null">
+        RESOURCE_SYS_NAME,
+      </if>
+      <if test="resourceName != null">
+        RESOURCE_NAME,
+      </if>
+      <if test="resourceType != null">
+        RESOURCE_TYPE,
+      </if>
+      <if test="resourceUrl != null">
+        RESOURCE_URL,
+      </if>
+      <if test="action != null">
+        ACTION,
+      </if>
+      <if test="returnCode != null">
+        RETURN_CODE,
+      </if>
+      <if test="returnMsg != null">
+        RETURN_MSG,
+      </if>
+      <if test="inParam != null">
+        IN_PARAM,
+      </if>
+      <if test="outParam != null">
+        OUT_PARAM,
+      </if>
+      <if test="appIp != null">
+        APP_IP,
+      </if>
+      <if test="responseTime != null">
+        RESPONSE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="traceId != null">
+        #{traceId,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resourceSysName != null">
+        #{resourceSysName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null">
+        #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null">
+        #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null">
+        #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMsg != null">
+        #{returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="inParam != null">
+        #{inParam,jdbcType=VARCHAR},
+      </if>
+      <if test="outParam != null">
+        #{outParam,jdbcType=VARCHAR},
+      </if>
+      <if test="appIp != null">
+        #{appIp,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTime != null">
+        #{responseTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.dwade.domain.log.ThirdInvokeLog">
+    update TW_PC_THIRD_INVOKE_LOG
+    <set>
+      <if test="traceId != null">
+        TRACE_ID = #{traceId,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        TIME = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resourceSysName != null">
+        RESOURCE_SYS_NAME = #{resourceSysName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null">
+        RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null">
+        RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null">
+        RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null">
+        ACTION = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMsg != null">
+        RETURN_MSG = #{returnMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="inParam != null">
+        IN_PARAM = #{inParam,jdbcType=VARCHAR},
+      </if>
+      <if test="outParam != null">
+        OUT_PARAM = #{outParam,jdbcType=VARCHAR},
+      </if>
+      <if test="appIp != null">
+        APP_IP = #{appIp,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTime != null">
+        RESPONSE_TIME = #{responseTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.dwade.domain.log.ThirdInvokeLog">
+    update TW_PC_THIRD_INVOKE_LOG
+    set TRACE_ID = #{traceId,jdbcType=VARCHAR},
+      TIME = #{time,jdbcType=TIMESTAMP},
+      RESOURCE_SYS_NAME = #{resourceSysName,jdbcType=VARCHAR},
+      RESOURCE_NAME = #{resourceName,jdbcType=VARCHAR},
+      RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR},
+      ACTION = #{action,jdbcType=VARCHAR},
+      RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+      RETURN_MSG = #{returnMsg,jdbcType=VARCHAR},
+      IN_PARAM = #{inParam,jdbcType=VARCHAR},
+      OUT_PARAM = #{outParam,jdbcType=VARCHAR},
+      APP_IP = #{appIp,jdbcType=VARCHAR},
+      RESPONSE_TIME = #{responseTime,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

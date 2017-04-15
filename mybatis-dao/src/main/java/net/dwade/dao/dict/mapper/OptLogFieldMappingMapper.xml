@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dwade.dao.dict.OptLogFieldMappingDao">
+  <resultMap id="BaseResultMap" type="net.dwade.domain.dict.OptLogFieldMapping">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="FUNC_ID" jdbcType="VARCHAR" property="funcId" />
+    <result column="FIELD_NAME" jdbcType="VARCHAR" property="fieldName" />
+    <result column="PARAM_FLAG" jdbcType="CHAR" property="paramFlag" />
+    <result column="PARAM_XPATH" jdbcType="VARCHAR" property="paramXpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, FUNC_ID, FIELD_NAME, PARAM_FLAG, PARAM_XPATH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TS_PC_OPT_LOG_FIELD_MAPPING
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TS_PC_OPT_LOG_FIELD_MAPPING
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="net.dwade.domain.dict.OptLogFieldMapping">
+    insert into TS_PC_OPT_LOG_FIELD_MAPPING (ID, FUNC_ID, FIELD_NAME, 
+      PARAM_FLAG, PARAM_XPATH)
+    values (#{id,jdbcType=VARCHAR}, #{funcId,jdbcType=VARCHAR}, #{fieldName,jdbcType=VARCHAR}, 
+      #{paramFlag,jdbcType=CHAR}, #{paramXpath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.dwade.domain.dict.OptLogFieldMapping">
+    insert into TS_PC_OPT_LOG_FIELD_MAPPING
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="funcId != null">
+        FUNC_ID,
+      </if>
+      <if test="fieldName != null">
+        FIELD_NAME,
+      </if>
+      <if test="paramFlag != null">
+        PARAM_FLAG,
+      </if>
+      <if test="paramXpath != null">
+        PARAM_XPATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="funcId != null">
+        #{funcId,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null">
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="paramFlag != null">
+        #{paramFlag,jdbcType=CHAR},
+      </if>
+      <if test="paramXpath != null">
+        #{paramXpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.dwade.domain.dict.OptLogFieldMapping">
+    update TS_PC_OPT_LOG_FIELD_MAPPING
+    <set>
+      <if test="funcId != null">
+        FUNC_ID = #{funcId,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null">
+        FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="paramFlag != null">
+        PARAM_FLAG = #{paramFlag,jdbcType=CHAR},
+      </if>
+      <if test="paramXpath != null">
+        PARAM_XPATH = #{paramXpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.dwade.domain.dict.OptLogFieldMapping">
+    update TS_PC_OPT_LOG_FIELD_MAPPING
+    set FUNC_ID = #{funcId,jdbcType=VARCHAR},
+      FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+      PARAM_FLAG = #{paramFlag,jdbcType=CHAR},
+      PARAM_XPATH = #{paramXpath,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.dwade.dao.log.ExceptionLogDao">
+  <resultMap id="BaseResultMap" type="net.dwade.domain.log.ExceptionLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TRACE_ID" jdbcType="VARCHAR" property="traceId" />
+    <result column="TIME" jdbcType="TIMESTAMP" property="time" />
+    <result column="APP_NAME" jdbcType="VARCHAR" property="appName" />
+    <result column="EXCEPTION_NAME" jdbcType="VARCHAR" property="exceptionName" />
+    <result column="EXCEPTION_INFO" jdbcType="VARCHAR" property="exceptionInfo" />
+    <result column="APP_IP" jdbcType="VARCHAR" property="appIp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TRACE_ID, TIME, APP_NAME, EXCEPTION_NAME, EXCEPTION_INFO, APP_IP
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TW_PC_EXCEPTION_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TW_PC_EXCEPTION_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="net.dwade.domain.log.ExceptionLog">
+    insert into TW_PC_EXCEPTION_LOG (ID, TRACE_ID, TIME, 
+      APP_NAME, EXCEPTION_NAME, EXCEPTION_INFO, 
+      APP_IP)
+    values (#{id,jdbcType=VARCHAR}, #{traceId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{appName,jdbcType=VARCHAR}, #{exceptionName,jdbcType=VARCHAR}, #{exceptionInfo,jdbcType=VARCHAR}, 
+      #{appIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.dwade.domain.log.ExceptionLog">
+    insert into TW_PC_EXCEPTION_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="traceId != null">
+        TRACE_ID,
+      </if>
+      <if test="time != null">
+        TIME,
+      </if>
+      <if test="appName != null">
+        APP_NAME,
+      </if>
+      <if test="exceptionName != null">
+        EXCEPTION_NAME,
+      </if>
+      <if test="exceptionInfo != null">
+        EXCEPTION_INFO,
+      </if>
+      <if test="appIp != null">
+        APP_IP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="traceId != null">
+        #{traceId,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionName != null">
+        #{exceptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionInfo != null">
+        #{exceptionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="appIp != null">
+        #{appIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.dwade.domain.log.ExceptionLog">
+    update TW_PC_EXCEPTION_LOG
+    <set>
+      <if test="traceId != null">
+        TRACE_ID = #{traceId,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        TIME = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appName != null">
+        APP_NAME = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionName != null">
+        EXCEPTION_NAME = #{exceptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionInfo != null">
+        EXCEPTION_INFO = #{exceptionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="appIp != null">
+        APP_IP = #{appIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.dwade.domain.log.ExceptionLog">
+    update TW_PC_EXCEPTION_LOG
+    set TRACE_ID = #{traceId,jdbcType=VARCHAR},
+      TIME = #{time,jdbcType=TIMESTAMP},
+      APP_NAME = #{appName,jdbcType=VARCHAR},
+      EXCEPTION_NAME = #{exceptionName,jdbcType=VARCHAR},
+      EXCEPTION_INFO = #{exceptionInfo,jdbcType=VARCHAR},
+      APP_IP = #{appIp,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
