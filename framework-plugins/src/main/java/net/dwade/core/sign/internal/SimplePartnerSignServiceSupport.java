@@ -96,4 +96,9 @@ public class SimplePartnerSignServiceSupport extends AbstractPartnerSignService 
 		return MD5Utils.md5( builder.toString() );
 	}
 
+	@Override
+	public String getSignKey(String partnerId) {
+		return null;
+	}
+
 }

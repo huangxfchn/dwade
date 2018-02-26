@@ -26,5 +26,12 @@ public interface PartnerSignService {
 	 * @return String
 	 */
 	public Sign doSign( Partner partner, PaymentResponse<?> response, SignType signType ) throws SignException;
+	
+	/**
+	 * 获取秘钥
+	 * @param partnerId
+	 * @return
+	 */
+	public String getSignKey(String partnerId);
  
 }
